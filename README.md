@@ -1,2 +1,2 @@
 # Agrishop-Boilerplate
-A simple demo backend application for graphql, rabbitmq and docker learners in Typescript. 
+A simple demo backend application microservices for rabbitmq and docker learners in Typescript. 
