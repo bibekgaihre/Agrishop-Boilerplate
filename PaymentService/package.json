@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npm i nodemon -g",
     "dev": "nodemon ./src/index.ts",
+    "build":"tsc --build",
+    "start":"node ./build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -1,0 +1,76 @@
+version: '3.1'
+
+services:
+  auth-service:
+    build: 
+      context: ./AuthService/
+    volumes:
+      - ./AuthService/:/usr/app/AuthService
+      - /usr/app/node_modules
+    container_name: auth-service
+    env_file:
+      - ./AuthService/.env
+    ports:
+      - "8080:8080"
+    networks:
+      - bikerent
+    depends_on:
+      - mongo
+  order-service:
+    build: 
+      context: ./OrderService/
+    volumes:
+      - ./OrderService/:/usr/app/OrderService
+      - /usr/app/node_modules
+    container_name: order-service
+    env_file:
+      - ./OrderService/.env
+    ports:
+      - "8081:8081"
+    networks:
+      - bikerent
+    depends_on:
+      - mongo
+  payment-service:
+    build:
+      context: ./PaymentService/
+    volumes:
+      - ./PaymentService/:/usr/app/PaymentService
+      - /usr/app/node_modules
+    container_name: payment-service
+    env_file:
+      - ./PaymentService/.env
+    ports:
+      - "8082:8082"
+    networks:
+      - bikerent
+    depends_on:
+      - mongo
+  product-service:
+    build:
+      context: ./ProductService/
+    volumes:
+      - ./ProductService:/usr/app/ProductService
+      - /usr/app/node_modules
+    container_name: product-service
+    env_file:
+      - ./ProductService/.env
+    ports:
+      - "8083:8083"
+    networks:
+      - bikerent
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - bikerent
+networks:
+  bikerent:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
