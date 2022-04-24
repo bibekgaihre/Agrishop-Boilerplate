@@ -14,7 +14,7 @@ declare var process: {
     }
 }
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,

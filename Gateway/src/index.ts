@@ -1,10 +1,10 @@
 import express, { Application, Response, Request, NextFunction } from "express";
-import mongoose, { ConnectOptions } from "mongoose";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import Router from "./Routes/index";
 dotenv.config();
+
 
 const app: Application = express();
 declare var process: {
@@ -14,19 +14,15 @@ declare var process: {
     }
 }
 
-const PORT = process.env.PORT || 8082;
-
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    autoIndex: true
-} as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static("public"));
-app.use("/api/v1/payments/", Router);
+app.use("/api/v1/", Router);
 app.listen(PORT, () => {
-    console.log("Running Payment Service on Port", PORT);
+    console.log("Running Gateway on Port", PORT);
 })
+
+

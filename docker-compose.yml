@@ -1,6 +1,18 @@
 version: '3.1'
 
 services:
+  gateway:
+    build:
+      context: ./Gateway/
+    volumes:
+      - ./Gateway/:/usr/app/Gateway
+    container_name: gateway
+    env_file:
+      - ./Gateway/.env
+    ports:
+      - "3000:3000"
+    networks:
+      - bikerent
   auth-service:
     build: 
       context: ./AuthService/
