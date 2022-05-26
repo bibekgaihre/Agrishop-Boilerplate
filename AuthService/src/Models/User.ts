@@ -13,7 +13,7 @@ const userSchema = new Schema<User>(
         role: {
             type: String,
             enum: {
-                values: ["Seller", "Buyer"]
+                values: ["seller", "buyer"]
             }
         }
     }
