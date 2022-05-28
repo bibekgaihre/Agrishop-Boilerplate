@@ -10,7 +10,6 @@ Tech Stacks used:<br/>
 <li>Nodejs</li>
 <li>Mongodb</li>
 <li>Websocket</li>
-<li>Redis</li>
 <li>Rabbitmq</li>
 <li>Docker</li>
 
@@ -31,6 +30,7 @@ DATABASE= mongodb://mongo:27017/bikerent-order<br/>
 -- On each service directory set .env file with PORT and DATABASE as variables. If you want to run database container then you need to set your service name inside hostname instead of localhost on env file.<br/>
 -- Run command "docker-compose up" or run command "make run-dev"
 <br/>
+You can use the uploaded postman collection. For testing websocket, postman has an availability on beta.
 
 <strong>%%Demo purpose only%%</strong>
 <br/>
