@@ -13,6 +13,8 @@ const paymentSchema = new Schema<Payment>({
         type: Boolean,
         default: false
     }
+}, {
+    timestamps: true
 });
 
 export default model<Payment>("Payment", paymentSchema);

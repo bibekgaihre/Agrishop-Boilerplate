@@ -1,7 +1,7 @@
 import { Document, Schema, ObjectId, model } from "mongoose";
 
 interface Product {
-    user: string,
+    sellerId: string,
     productName: string,
     productDescription: string,
     availability: boolean,
@@ -10,7 +10,7 @@ interface Product {
 
 const productSchema = new Schema<Product>(
     {
-        user: String,
+        sellerId: String,
         productName: String,
         productDescription: String,
         availability: {
@@ -18,6 +18,9 @@ const productSchema = new Schema<Product>(
             default: true
         },
         total: Number
+    },
+    {
+        timestamps: true
     }
 );
 

@@ -16,6 +16,9 @@ const userSchema = new Schema<User>(
                 values: ["seller", "buyer"]
             }
         }
+    },
+    {
+        timestamps: true
     }
 )
 

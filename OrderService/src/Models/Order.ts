@@ -17,6 +17,9 @@ const orderSchema = new Schema<Order>(
             start: Date,
             end: Date
         }
+    },
+    {
+        timestamps: true
     }
 );
 

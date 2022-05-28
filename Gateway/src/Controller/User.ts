@@ -10,6 +10,7 @@ declare var process: {
 }
 
 interface UserData {
+    uid: string,
     uName: string,
     email: string,
     role: string,
@@ -31,6 +32,7 @@ export default class User {
             });
             if (result.data.username) {
                 let userData = {} as UserData;
+                userData.uid = result.data._id;
                 userData.email = email;
                 userData.role = result.data.role;
                 userData.uName = username;
