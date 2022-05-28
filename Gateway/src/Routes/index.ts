@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from "express";
 import UserController from "../Controller/User";
+import ProductController from "../Controller/Product";
 import { secureAPI, roleCheck } from "../Middleware/Auth";
 
 
@@ -13,20 +14,40 @@ router.get("/", async (req: Request, res: Response) => {
 })
 //reroute to product service
 router.get("/products", secureAPI(), async (req: Request, res: Response) => {
-
-
+    let product = new ProductController();
+    let data = await product.getAllProducts();
+    res.json(data);
 });
 
 router.post("/products", secureAPI(), roleCheck(["seller"]), async (req: Request, res: Response) => {
-
+    let { decoded } = res.locals;
+    let sellerId = decoded.userData.uid;
+    let { productName, productDescription, availability, unitPrice, total } = req.body;
+    let product = new ProductController();
+    let data = await product.createProduct(sellerId, productName, productDescription, availability, unitPrice, total);
+    res.json(data);
 })
 //this should create order with payment==false
-router.post("/products/:productId/pay", roleCheck(["buyer"]), async (req: Request, res: Response) => {
+router.post("/products/:productId/pay", secureAPI(), roleCheck(["buyer"]), async (req: Request, res: Response) => {
+    let { decoded } = res.locals;
+    let userId = decoded.userData.uid;
+    let { date_start, date_end } = req.body;
+    let { productId } = req.params;
+    let product = new ProductController();
+    let data = await product.rentProduct(userId, date_start, date_end, productId);
+    res.json(data);
+
 
 });
 //this should update the order with payment==true and send notification
-router.post("/products/:productId/confirm-checkout", roleCheck(["buyer"]), async (req: Request, res: Response) => {
-
+router.post("/products/:productId/confirm-checkout", secureAPI(), roleCheck(["buyer"]), async (req: Request, res: Response) => {
+    let { decoded } = res.locals;
+    let userId = decoded.userData.uid;
+    let { orderId } = req.body;
+    let { productId } = req.params;
+    let product = new ProductController();
+    let data = await product.confirmPayment(userId, orderId, productId);
+    res.json(data);
 });
 
 //reroute to Auth service

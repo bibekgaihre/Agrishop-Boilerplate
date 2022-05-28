@@ -42,8 +42,11 @@ export default class User {
             }
 
             return result.data;
-        } catch (error) {
+        } catch (error: any) {
             console.log(error);
+            if (error.code == "ENOTFOUND") {
+                return "Server is unavailable currently."
+            }
         }
     }
 
@@ -59,8 +62,11 @@ export default class User {
                 }
             });
             return result.data;
-        } catch (error) {
+        } catch (error: any) {
             console.log(error);
+            if (error.code == "ENOTFOUND") {
+                return "Server is unavailable currently."
+            }
         }
     }
 
