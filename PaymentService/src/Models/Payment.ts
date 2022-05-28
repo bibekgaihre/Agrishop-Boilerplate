@@ -1,13 +1,13 @@
 import { Document, Schema, ObjectId, model } from "mongoose";
 
 interface Payment {
-    order: string,
+    orderId: string,
     total: number,
     isPaid: boolean
 }
 
 const paymentSchema = new Schema<Payment>({
-    order: String,
+    orderId: String,
     total: Number,
     isPaid: {
         type: Boolean,

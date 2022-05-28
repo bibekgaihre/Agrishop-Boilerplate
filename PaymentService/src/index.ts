@@ -5,6 +5,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Router from "./Routes/index";
 import amqplib from "amqplib/callback_api";
+import PaymentController from "./Controller/Payment";
+
 dotenv.config();
 
 const app: Application = express();
@@ -23,6 +25,7 @@ mongoose.connect(process.env.DATABASE, {
     autoIndex: true
 } as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
 
+
 amqplib.connect('amqp://localhost', (connErr, connection) => {
     if (connErr) throw connErr
     const exchange = "pub_sub_payment";
@@ -35,8 +38,24 @@ amqplib.connect('amqp://localhost', (connErr, connection) => {
             console.log(`* Waiting for messages in ${queue}. To exit press CTRL+C`);
             channel.bindQueue(queue.queue, exchange, '');
             channel.consume(queue.queue, msg => {
-                console.log(`${msg?.content.toString()}`);
 
+                let data = msg?.content.toString()
+                let d: any;
+                d = JSON.parse(data!);
+                console.log(d.userId);
+                let payment = new PaymentController();
+                //complete payment
+                if (!d.total) {
+                    payment.confirmPayment(d).then(() => {
+                        console.log("Payment Done");
+                    });
+                } else if (d.total) {
+                    payment.createPayment(d).then(() => {
+                        console.log("Payment created for order");
+                    })
+                }
+
+                // data = JSON.parse(data);
             }, { noAck: true })
         })
 

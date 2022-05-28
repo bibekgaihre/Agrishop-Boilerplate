@@ -5,6 +5,7 @@ interface Product {
     productName: string,
     productDescription: string,
     availability: boolean,
+    unitPrice: number,
     total: number
 }
 
@@ -17,6 +18,7 @@ const productSchema = new Schema<Product>(
             type: Boolean,
             default: true
         },
+        unitPrice: Number,
         total: Number
     },
     {

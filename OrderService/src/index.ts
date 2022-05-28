@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import Router from "./Routes/index";
+import OrderController from "./Controller/Order";
 import amqplib from "amqplib/callback_api";
 dotenv.config();
 
@@ -36,7 +37,21 @@ amqplib.connect('amqp://localhost', (connErr, connection) => {
             console.log(`* Waiting for messages in ${queue}. To exit press CTRL+C`);
             channel.bindQueue(queue.queue, exchange, '');
             channel.consume(queue.queue, msg => {
-                console.log(`${msg?.content.toString()}`);
+
+                let data = msg?.content.toString()
+                let d: any;
+                d = JSON.parse(data!);
+                let order = new OrderController();
+                //create order
+                if (!d.paidOn) {
+                    order.createOrder(d).then(() => {
+                        console.log("order created");
+                    })
+                } else if (d.paidOn) {
+                    order.updateOrder(d).then(() => {
+                        console.log("order updated");
+                    })
+                }
 
             }, { noAck: true })
         })

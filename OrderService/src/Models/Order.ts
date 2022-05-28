@@ -1,22 +1,26 @@
-import { Document, Schema, ObjectId, model } from "mongoose";
+import { Document, Schema, ObjectId, model, Model } from "mongoose";
 
 interface Order {
-    product: string,
-    user: string,
+    orderId: string,
+    productId: string,
+    userId: string,
     date: {
         start: Date,
         end: Date
-    }
+    },
+    paidOn: Date
 }
 
 const orderSchema = new Schema<Order>(
     {
-        product: String,
-        user: String,
+        orderId: String,
+        productId: String,
+        userId: String,
         date: {
             start: Date,
             end: Date
-        }
+        },
+        paidOn: Date
     },
     {
         timestamps: true
