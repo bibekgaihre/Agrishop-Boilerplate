@@ -25,7 +25,7 @@ mongoose.connect(process.env.DATABASE, {
     autoIndex: true
 } as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
 
-amqplib.connect('amqp://localhost', (connErr, connection) => {
+amqplib.connect('amqp://rabbitmq', (connErr, connection) => {
     if (connErr) throw connErr
     const exchange = "pub_sub_payment";
     const queue = "order_payment";

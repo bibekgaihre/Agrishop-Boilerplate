@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
 app.use(express.json());
 
 
-amqplib.connect('amqp://localhost', (connErr, connection) => {
+amqplib.connect('amqp://rabbitmq', (connErr, connection) => {
     if (connErr) throw connErr
     // const exchange = "notification";
     const queue = "notification";

@@ -6,14 +6,12 @@ import { channel, connection, exchange } from "../util/mqconnect";
 const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
-    let msg = "OK from product";
-    channel.assertQueue()
-    channel.publish(exchange, "", Buffer.from(msg));
-    console.log("message sent");
-    setTimeout(() => {
-        connection.close()
-    }, 500);
-    res.json("OK from Products");
+    try {
+        let products = await productModel.find({});
+        res.json(products);
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 router.get("/:sellerId", async (req: Request, res: Response) => {

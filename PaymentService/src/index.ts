@@ -26,7 +26,7 @@ mongoose.connect(process.env.DATABASE, {
 } as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
 
 
-amqplib.connect('amqp://localhost', (connErr, connection) => {
+amqplib.connect('amqp://rabbitmq', (connErr, connection) => {
     if (connErr) throw connErr
     const exchange = "pub_sub_payment";
     const queue = "order_payment";
@@ -42,12 +42,12 @@ amqplib.connect('amqp://localhost', (connErr, connection) => {
                 let data = msg?.content.toString()
                 let d: any;
                 d = JSON.parse(data!);
-                console.log(d.userId);
                 let payment = new PaymentController();
                 //complete payment
                 if (!d.total) {
                     payment.confirmPayment(d).then(() => {
                         console.log("Payment Done");
+                        channel.sendToQueue('notification', Buffer.from(JSON.stringify(d)))
                     });
                 } else if (d.total) {
                     payment.createPayment(d).then(() => {
