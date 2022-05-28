@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "402cfa9e-c784-443d-bddd-6caa5b91ab39",
+		"name": "Bike Rent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"buyer\",\n    \"email\":\"buyer@test.com\",\n    \"role\":\"buyer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"test@test.com\",\n    \"username\":\"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get Order By Id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1aWQiOiI2MjkyOTNmZTNlM2I4NmM1NDA2YWU2ZGUiLCJlbWFpbCI6InNlbGxlckB0ZXN0LmNvbSIsInJvbGUiOiJzZWxsZXIiLCJ1TmFtZSI6InNlbGxlciJ9LCJpYXQiOjE2NTM3NzMzNDksImV4cCI6MTY1NjM2NTM0OX0.ZViA9Hng8YyWcT3qLNZ6NfqnO0uXfymV-RXyJ4ET4GQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\":\"Rockrider ST-100\",\n    \"productDescription\":\"Dieses Einsteiger-Mountainbike in 27,5 Zoll ist auf den weiblichen Körperbau abgestimmt und ideal für Touren mit einer Dauer von bis zu 1,5 Stunden.\",\n    \"availability\":true,\n    \"unitPrice\":10,\n    \"total\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/api/v1/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Pay for product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1aWQiOiI2MjkyOTQxNTNlM2I4NmM1NDA2YWU2ZTEiLCJlbWFpbCI6ImJ1eWVyQHRlc3QuY29tIiwicm9sZSI6ImJ1eWVyIiwidU5hbWUiOiJidXllciJ9LCJpYXQiOjE2NTM3NzM3ODEsImV4cCI6MTY1NjM2NTc4MX0.ZdwR9E9-UYmOqgUS42wZVp-PJYxTy5KscLks9x-bDDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\":\"629294153e3b86c5406ae6e1\",\n    \"date_start\":\"2022-06-01\",\n    \"date_end\":\"2022-06-03\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/products/:productId/pay",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":productId",
+								"pay"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "629295bffcb99859299029d2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1aWQiOiI2MjkyOTQxNTNlM2I4NmM1NDA2YWU2ZTEiLCJlbWFpbCI6ImJ1eWVyQHRlc3QuY29tIiwicm9sZSI6ImJ1eWVyIiwidU5hbWUiOiJidXllciJ9LCJpYXQiOjE2NTM3NzM3ODEsImV4cCI6MTY1NjM2NTc4MX0.ZdwR9E9-UYmOqgUS42wZVp-PJYxTy5KscLks9x-bDDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\":\"a88627\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/products/:productId/confirm-checkout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":productId",
+								"confirm-checkout"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "629295bffcb99859299029d2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoic2VsbGVyIiwidU5hbWUiOiJ0ZXN0In0sImlhdCI6MTY1MzU3ODM3NiwiZXhwIjoxNjU2MTcwMzc2fQ.b0NHVpEVmBKokRXVB05iHIa3phdMqLI-G6tWjBTdLw4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
