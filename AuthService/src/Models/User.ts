@@ -1,6 +1,6 @@
 import { Document, Schema, ObjectId, model } from "mongoose";
 
-interface User {
+export interface User {
     username: string,
     email: string,
     role: string

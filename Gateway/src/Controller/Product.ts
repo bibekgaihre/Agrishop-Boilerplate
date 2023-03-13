@@ -54,7 +54,7 @@ export default class Product {
         try {
             let result = await axios({
                 method: "POST",
-                url: process.env.PRODUCT_SERVICE_URL + "/checkout/" + productId,
+                url: process.env.PRODUCT_SERVICE_URL + `/${productId}` + "/confirm-purchase/",
                 data: {
                     userId,
                     orderId
@@ -73,7 +73,7 @@ export default class Product {
         try {
             let result = await axios({
                 method: "POST",
-                url: process.env.PRODUCT_SERVICE_URL + "/pay/" + productId,
+                url: process.env.PRODUCT_SERVICE_URL + `/${productId}` + "/create-payment/",
                 data: {
                     userId,
                     date_start,

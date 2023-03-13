@@ -13,7 +13,8 @@ const app: Application = express();
 declare var process: {
     env: {
         DATABASE: string,
-        PORT: number
+        PORT: number,
+        MQURL: string
     }
 }
 
@@ -25,15 +26,15 @@ mongoose.connect(process.env.DATABASE, {
     autoIndex: true
 } as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
 
-amqplib.connect('amqp://rabbitmq', (connErr, connection) => {
+amqplib.connect(process.env.MQURL, (connErr, connection) => {
     if (connErr) throw connErr
     const exchange = "pub_sub_payment";
     const queue = "order_payment";
     const routingKey = "";
     connection.createChannel((channelErr, channel) => {
         if (channelErr) throw channelErr;
-        channel.assertExchange(exchange, 'fanout', { durable: false });
-        channel.assertQueue('', { exclusive: true }, (err, queue) => {
+        channel.assertExchange(exchange, 'topic', { durable: true });
+        channel.assertQueue('', { exclusive: true, durable: true }, (err, queue) => {
             console.log(`* Waiting for messages in ${queue}. To exit press CTRL+C`);
             channel.bindQueue(queue.queue, exchange, '');
             channel.consume(queue.queue, msg => {
@@ -52,8 +53,11 @@ amqplib.connect('amqp://rabbitmq', (connErr, connection) => {
                         console.log("order updated");
                     })
                 }
+                if (msg) {
+                    channel.ack(msg)
+                }
 
-            }, { noAck: true })
+            }, { noAck: false })
         })
 
     })

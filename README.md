@@ -37,3 +37,9 @@ You can use the uploaded postman collection. For testing websocket, postman has 
 Feedbacks using issues and features updates using pull request are appreciated
 <br/>
 Thank you. :)
+
+// things to fix:
+
+<ul>
+<li>Message Peristency in the queue</li>
+</ul>

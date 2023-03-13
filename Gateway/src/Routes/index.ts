@@ -28,7 +28,7 @@ router.post("/products", secureAPI(), roleCheck(["seller"]), async (req: Request
     res.json(data);
 })
 //this should create order with payment==false
-router.post("/products/:productId/pay", secureAPI(), roleCheck(["buyer"]), async (req: Request, res: Response) => {
+router.post("/products/:productId/create-payment", secureAPI(), roleCheck(["buyer"]), async (req: Request, res: Response) => {
     let { decoded } = res.locals;
     let userId = decoded.userData.uid;
     let { date_start, date_end } = req.body;
@@ -40,7 +40,7 @@ router.post("/products/:productId/pay", secureAPI(), roleCheck(["buyer"]), async
 
 });
 //this should update the order with payment==true and send notification
-router.post("/products/:productId/confirm-checkout", secureAPI(), roleCheck(["buyer"]), async (req: Request, res: Response) => {
+router.post("/products/:productId/confirm-purchase", secureAPI(), roleCheck(["buyer"]), async (req: Request, res: Response) => {
     let { decoded } = res.locals;
     let userId = decoded.userData.uid;
     let { orderId } = req.body;
