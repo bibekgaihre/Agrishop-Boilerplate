@@ -1,11 +1,12 @@
-import express, { Application, Response, Request, NextFunction } from "express";
-import mongoose, { ConnectOptions } from "mongoose";
+import express, { Application } from "express";
+
 import morgan from "morgan";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import Router from "./Routes/index";
-import amqplib from "amqplib/callback_api";
+
 import mqconnection from "./util/mqconnect";
+import Database from "./util/connectors/db";
 dotenv.config();
 
 const app: Application = express();
@@ -22,12 +23,7 @@ mqconnection().then(() => console.log("connected to rabbitmq"));
 
 
 const PORT = process.env.PORT || 8083;
-
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    autoIndex: true
-} as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
+new Database().connectMongoDB();
 
 app.use(cors());
 app.use(express.json());

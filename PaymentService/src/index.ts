@@ -5,7 +5,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Router from "./Routes/index";
 import amqplib from "amqplib/callback_api";
+import Database from "./util/connectors/db";
 import PaymentController from "./Controller/Payment";
+
 
 dotenv.config();
 
@@ -13,18 +15,14 @@ const app: Application = express();
 declare var process: {
     env: {
         DATABASE: string,
-        PORT: number
+        PORT: number,
+        MQURL: string
     }
 }
 
 const PORT = process.env.PORT || 8082;
 
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    autoIndex: true
-} as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
-
+new Database().connectMongoDB();
 
 amqplib.connect('amqp://rabbitmq', (connErr, connection) => {
     if (connErr) throw connErr

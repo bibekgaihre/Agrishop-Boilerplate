@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import Router from "./Routes/index";
+import Database from "./util/connectors/db";
 dotenv.config();
 
 
@@ -16,12 +17,8 @@ declare var process: {
 }
 
 const PORT = process.env.PORT || 8080;
+new Database().connectMongoDB();
 
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    autoIndex: true
-} as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
 
 app.use(cors());
 app.use(express.json());

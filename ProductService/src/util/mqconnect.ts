@@ -7,7 +7,6 @@ let exchange = "pub_sub_payment";
 
 
 async function connect() {
-
     const server: string = (process.env.MQURL) || "";
     connection = await amqplib.connect(server);
     channel = await connection.createChannel();

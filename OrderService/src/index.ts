@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import Router from "./Routes/index";
 import OrderController from "./Controller/Order";
 import amqplib from "amqplib/callback_api";
+import Database from "./util/connectors/db";
 dotenv.config();
 
 
@@ -20,11 +21,7 @@ declare var process: {
 
 const PORT = process.env.PORT || 8081;
 
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    autoIndex: true
-} as ConnectOptions).then(() => console.log(`DB connected ${process.env.DATABASE}`));
+new Database().connectMongoDB();
 
 amqplib.connect(process.env.MQURL, (connErr, connection) => {
     if (connErr) throw connErr

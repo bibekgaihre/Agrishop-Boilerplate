@@ -1,7 +1,7 @@
 # Bikerent-Boilerplate
 
 <strong>EN:</strong><br/>
-A simple demo backend application for rabbitmq and docker learners in Typescript.
+A simple demo application for rabbitmq and docker learners in Typescript.
 This is only intended to show demo and not to be used on production.
 Tech Stacks used:<br/>
 
@@ -37,6 +37,8 @@ You can use the uploaded postman collection. For testing websocket, postman has 
 Feedbacks using issues and features updates using pull request are appreciated
 <br/>
 Thank you. :)
+
+<strong>Currently in verge of extension to frontend</strong>
 
 // things to fix:
 
