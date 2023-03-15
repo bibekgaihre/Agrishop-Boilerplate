@@ -1,6 +1,6 @@
 import orderModel from "../Models/Order";
 
-export default class Order {
+export default class OrderService {
     constructor() { }
 
     public createOrder = async (payload: object) => {

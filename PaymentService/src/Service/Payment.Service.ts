@@ -1,6 +1,6 @@
 import paymentModel from "../Models/Payment";
 
-export default class Payment {
+export default class PaymentService {
     constructor() { }
 
     public createPayment = async (payload: object) => {

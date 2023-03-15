@@ -4,7 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import Router from "./Routes/index";
-import OrderController from "./Controller/Order";
+import OrderController from "./Service/Order.Service";
 import amqplib from "amqplib/callback_api";
 import Database from "./util/connectors/db";
 dotenv.config();
