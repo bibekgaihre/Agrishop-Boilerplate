@@ -10,6 +10,9 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      center: true,
+    },
     colors: {
       transparent: "transparent",
       current: "currentColor",
@@ -25,6 +28,7 @@ module.exports = {
       nightgreenlight: "#b1dfbb",
       warning: "#ffc107",
     },
+
     extend: {},
   },
   plugins: [require("@tailwindcss/forms")],
