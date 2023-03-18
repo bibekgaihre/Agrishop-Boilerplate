@@ -16,7 +16,10 @@ function classNames(...classes: string[]) {
 export default function navbar() {
   return (
     <>
-      <Disclosure as="nav" className="bg-white border-2 border-b-gray-200">
+      <Disclosure
+        as="nav"
+        className="bg-white border-2 border-b-gray-200 fixed top-0 left-0 right-0"
+      >
         {({ open }) => (
           <>
             <div className=" px-2 sm:px-6 lg:px-8 ">

@@ -18,6 +18,7 @@ module.exports = {
       current: "currentColor",
       black: colors.black,
       white: colors.white,
+      orange: colors.orange,
       green: colors.green,
       gray: colors.gray,
       emerald: colors.emerald,
@@ -27,9 +28,17 @@ module.exports = {
       nightgreen: "#c3e6cb",
       nightgreenlight: "#b1dfbb",
       warning: "#ffc107",
+      cartColor: "#f26725",
     },
 
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        "[auto,auto,1fr]": "auto auto 1fr",
+      },
+    },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
