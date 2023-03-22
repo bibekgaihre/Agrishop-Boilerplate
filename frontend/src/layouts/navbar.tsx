@@ -36,22 +36,9 @@ export default function navbar() {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
-                    <img
-                      className="block h-8 w-auto lg:hidden"
-                      // src={getLogo()}
-                      alt=""
-                    />
-
-                    <img
-                      className="hidden h-8 w-auto lg:block"
-                      // src={getLogo()}
-                      alt=""
-                    />
-                  </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4 text-black px-3 py-2 rounded-md text-xl font-medium">
-                      RentBike.io
+                      <a href="/products">RentBike.io</a>
                     </div>
                   </div>
                 </div>

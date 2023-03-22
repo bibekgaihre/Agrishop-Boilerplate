@@ -8,6 +8,7 @@ Tech Stacks used:<br/>
 <ul>
 <li>Typescript</li>
 <li>Nodejs</li>
+<li>NextJs</li>
 <li>Mongodb</li>
 <li>Websocket</li>
 <li>Rabbitmq</li>
@@ -17,7 +18,7 @@ Tech Stacks used:<br/>
 
 <p>
 The idea is simple. We have a Gateway service which acts as a door or proxy for other apis. It will contain basic authentication and authorization. It connects with other services using REST apis. Auth Service has functions related to user registration and login. Product service has functions related to product. Meanwhile it is also connected with Order and Payment service using Messaging queues. Notification Service will emit event using websocket once payment is processed using payment service. Payment and notification are also connected using message queues. 
-If you want to decouple more. You can follow clean architecture on each services.
+If you want to decouple more. You can follow clean architecture/SOLID principle on each services.
 </p>
 
 <br/>

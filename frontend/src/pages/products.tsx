@@ -3,11 +3,13 @@ import Head from "next/head";
 import NoItem from "@/components/noitems";
 import Container from "@/layouts/container";
 import List from "@/components/list";
+import { ProductProvider } from "./api/product";
+import { SellerProvider } from "./api/seller";
 function classNameNames(...classNamees: string[]) {
   return classNamees.filter(Boolean).join(" ");
 }
 
-export default function Dashboard() {
+export default function Products() {
   return (
     <>
       <Head>
@@ -17,17 +19,19 @@ export default function Dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Container>
-        <div className="flex items-center justify-center ">
-          <input
-            type="text"
-            placeholder="Type location name or rental company name here "
-            className="mt-24 w-1/2 border-2 border-gray-300 rounded-full focus:border-gray-300  mx-auto"
-          ></input>
-        </div>
-        <NoItem />
-        <List />
-      </Container>
+      <ProductProvider>
+        <Container>
+          <div className="flex items-center justify-center ">
+            <input
+              type="text"
+              placeholder="Type location name or rental company name here "
+              className="mt-24 w-1/2 border-2 border-gray-300 rounded-full focus:border-gray-300  mx-auto"
+            ></input>
+          </div>
+          <NoItem />
+          <List />
+        </Container>
+      </ProductProvider>
     </>
   );
 }
