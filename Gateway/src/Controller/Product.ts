@@ -13,7 +13,7 @@ declare var process: {
 export default class Product {
     constructor() { }
     //only seller can create
-    public createProduct = async (sellerId: string, productName: string, productDescription: string, availability: boolean, unitPrice: number, total: number) => {
+    public createProduct = async (sellerId: string, productName: string, productDescription: string, productHighlights: string[], specification: object, size: string[], availability: boolean, unitPrice: number, total: number) => {
         try {
             let result = await axios({
                 method: "post",
@@ -22,6 +22,9 @@ export default class Product {
                     sellerId,
                     productName,
                     productDescription,
+                    productHighlights,
+                    specification,
+                    size,
                     availability,
                     unitPrice,
                     total

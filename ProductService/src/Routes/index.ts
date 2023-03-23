@@ -14,6 +14,8 @@ router.get("/:productId", productController.getProduct);
 
 router.post("/", productController.createProduct);
 
+router.put("/:productId", productController.updateProduct);
+
 router.post("/:productId/create-payment", paymentController.createPayment);
 
 router.post("/:productId/confirm-purchase", paymentController.confirmPurchase);

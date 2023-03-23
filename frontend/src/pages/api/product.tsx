@@ -14,6 +14,16 @@ export interface Product {
   sellerId: string;
   productName: string;
   productDescription: string;
+  productHighlights: string[];
+  size: string[];
+  specification: {
+    frameType: string;
+    brakes: string;
+    wheels: string;
+    gears: string;
+    model: string;
+    weight: number;
+  };
   availability: boolean;
   unitPrice: number;
   total: number;

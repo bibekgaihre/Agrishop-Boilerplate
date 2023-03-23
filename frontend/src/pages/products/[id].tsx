@@ -19,7 +19,7 @@ interface p {
 export default function ProductPage({ product }: p) {
   let sellers = useSellers();
   let seller = sellers.find((seller) => seller.sellerId === product.sellerId);
-
+  let sizevariations = ["XXS", "XS", "S", "M", "L", "XL", "2XL", "3XL"];
   return (
     <>
       <Head>
@@ -113,7 +113,7 @@ export default function ProductPage({ product }: p) {
                 €{product.unitPrice} <i className="text-2xl">per day</i>
               </p>
 
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
                   <div className="flex items-center">
@@ -190,7 +190,7 @@ export default function ProductPage({ product }: p) {
                     117 reviews
                   </a>
                 </div>
-              </div>
+              </div> */}
               <div className="mt-10">
                 <h3 className="text-sm font-medium text-gray-900">Renter</h3>
                 <h3>
@@ -230,160 +230,72 @@ export default function ProductPage({ product }: p) {
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                    <a
+                    {/* <a
                       href="#"
                       className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
                     >
                       Size guide
-                    </a>
+                    </a> */}
                   </div>
 
                   <fieldset className="mt-4">
                     <legend className="sr-only">Choose a size</legend>
                     <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="XXS"
-                          disabled
-                          className="sr-only"
-                          aria-labelledby="size-choice-0-label"
-                        />
-                        <span id="size-choice-0-label">XXS</span>
+                      {sizevariations.map((size) => {
+                        if (product.size.includes(size)) {
+                          return (
+                            <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
+                              <input
+                                type="radio"
+                                name="size-choice"
+                                value="XS"
+                                className="sr-only"
+                                aria-labelledby="size-choice-1-label"
+                              />
+                              <span id="size-choice-1-label">{size}</span>
 
-                        <span
-                          aria-hidden="true"
-                          className="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200"
-                        >
-                          <svg
-                            className="absolute inset-0 h-full w-full stroke-2 text-gray-200"
-                            viewBox="0 0 100 100"
-                            preserveAspectRatio="none"
-                            stroke="currentColor"
-                          >
-                            <line
-                              x1="0"
-                              y1="100"
-                              x2="100"
-                              y2="0"
-                              vectorEffect="non-scaling-stroke"
-                            />
-                          </svg>
-                        </span>
-                      </label>
+                              <span
+                                className="pointer-events-none absolute -inset-px rounded-md"
+                                aria-hidden="true"
+                              ></span>
+                            </label>
+                          );
+                        } else {
+                          return (
+                            <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
+                              <input
+                                type="radio"
+                                name="size-choice"
+                                value="XXS"
+                                disabled
+                                className="sr-only"
+                                aria-labelledby="size-choice-0-label"
+                              />
+                              <span id="size-choice-0-label">{size}</span>
 
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="XS"
-                          className="sr-only"
-                          aria-labelledby="size-choice-1-label"
-                        />
-                        <span id="size-choice-1-label">XS</span>
-
-                        <span
-                          className="pointer-events-none absolute -inset-px rounded-md"
-                          aria-hidden="true"
-                        ></span>
-                      </label>
-
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="S"
-                          className="sr-only"
-                          aria-labelledby="size-choice-2-label"
-                        />
-                        <span id="size-choice-2-label">S</span>
-
-                        <span
-                          className="pointer-events-none absolute -inset-px rounded-md"
-                          aria-hidden="true"
-                        ></span>
-                      </label>
-
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="M"
-                          className="sr-only"
-                          aria-labelledby="size-choice-3-label"
-                        />
-                        <span id="size-choice-3-label">M</span>
-
-                        <span
-                          className="pointer-events-none absolute -inset-px rounded-md"
-                          aria-hidden="true"
-                        ></span>
-                      </label>
-
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="L"
-                          className="sr-only"
-                          aria-labelledby="size-choice-4-label"
-                        />
-                        <span id="size-choice-4-label">L</span>
-
-                        <span
-                          className="pointer-events-none absolute -inset-px rounded-md"
-                          aria-hidden="true"
-                        ></span>
-                      </label>
-
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="XL"
-                          className="sr-only"
-                          aria-labelledby="size-choice-5-label"
-                        />
-                        <span id="size-choice-5-label">XL</span>
-
-                        <span
-                          className="pointer-events-none absolute -inset-px rounded-md"
-                          aria-hidden="true"
-                        ></span>
-                      </label>
-
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="2XL"
-                          className="sr-only"
-                          aria-labelledby="size-choice-6-label"
-                        />
-                        <span id="size-choice-6-label">2XL</span>
-
-                        <span
-                          className="pointer-events-none absolute -inset-px rounded-md"
-                          aria-hidden="true"
-                        ></span>
-                      </label>
-
-                      <label className="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input
-                          type="radio"
-                          name="size-choice"
-                          value="3XL"
-                          className="sr-only"
-                          aria-labelledby="size-choice-7-label"
-                        />
-                        <span id="size-choice-7-label">3XL</span>
-
-                        <span
-                          className="pointer-events-none absolute -inset-px rounded-md"
-                          aria-hidden="true"
-                        ></span>
-                      </label>
+                              <span
+                                aria-hidden="true"
+                                className="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200"
+                              >
+                                <svg
+                                  className="absolute inset-0 h-full w-full stroke-2 text-gray-200"
+                                  viewBox="0 0 100 100"
+                                  preserveAspectRatio="none"
+                                  stroke="currentColor"
+                                >
+                                  <line
+                                    x1="0"
+                                    y1="100"
+                                    x2="100"
+                                    y2="0"
+                                    vectorEffect="non-scaling-stroke"
+                                  />
+                                </svg>
+                              </span>
+                            </label>
+                          );
+                        }
+                      })}
                     </div>
                   </fieldset>
                 </div>
@@ -421,23 +333,13 @@ export default function ProductPage({ product }: p) {
 
                 <div className="mt-4">
                   <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                    <li className="text-gray-400">
-                      <span className="text-gray-600">
-                        Hand cut and sewn locally
-                      </span>
-                    </li>
-
-                    <li className="text-gray-400">
-                      <span className="text-gray-600">
-                        Dyed with our proprietary colors
-                      </span>
-                    </li>
-
-                    <li className="text-gray-400">
-                      <span className="text-gray-600">
-                        Pre-washed &amp; pre-shrunk
-                      </span>
-                    </li>
+                    {product.productHighlights.map((highlight, index) => {
+                      return (
+                        <li className="text-gray-400" key={index}>
+                          <span className="text-gray-600">{highlight}</span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
@@ -448,12 +350,43 @@ export default function ProductPage({ product }: p) {
                 </h2>
 
                 <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">
-                    COLNAGO V3rs - carbongroupset: Shimano DuraAce Di2 (12
-                    speed, 11 speed)brakes: Shimano DuraAce Di2, DISCwheels:
-                    Fulcrum Wind - carbongears: 52x36 a 11-30TPowermeter: Stages
-                    (Single)Model: 2022/2023Weight: 6,8 kg
-                  </p>
+                  <div className="text-sm text-gray-600">
+                    <ul
+                      role="list"
+                      className="list-disc space-y-2 pl-4 text-sm"
+                    >
+                      <li className="text-gray-400">
+                        <span className="text-gray-600">
+                          Frame Type: {product.specification.frameType}
+                        </span>
+                      </li>
+                      <li className="text-gray-400">
+                        <span className="text-gray-600">
+                          Brakes: {product.specification.brakes}
+                        </span>
+                      </li>
+                      <li className="text-gray-400">
+                        <span className="text-gray-600">
+                          Wheels: {product.specification.wheels}
+                        </span>
+                      </li>
+                      <li className="text-gray-400">
+                        <span className="text-gray-600">
+                          Gears: {product.specification.gears}
+                        </span>
+                      </li>
+                      <li className="text-gray-400">
+                        <span className="text-gray-600">
+                          Model: {product.specification.model}
+                        </span>
+                      </li>
+                      <li className="text-gray-400">
+                        <span className="text-gray-600">
+                          Weight: {product.specification.weight} kg
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

@@ -8,6 +8,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { Disclosure, Dialog, Menu, Transition } from "@headlessui/react";
 import { Fragment, useRef } from "react";
+import { redirect } from "next/dist/server/api-utils";
+import Link from "next/link";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -43,16 +45,19 @@ export default function navbar() {
                   </div>
                 </div>
                 <div className="absolute flex space-x-10 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button
-                    type="button"
-                    className="hover:bg-green-800 hover:rounded-lg p-1 "
-                  >
-                    <span className="sr-only">View Home</span>
-                    <HomeIcon
-                      className="stroke-green-700 hover:stroke-white h-8 w-8"
-                      aria-hidden="true"
-                    />
-                  </button>
+                  <a href="/products">
+                    <button
+                      type="button"
+                      className="hover:bg-green-800 hover:rounded-lg p-1 "
+                    >
+                      <span className="sr-only">View Home</span>
+                      <HomeIcon
+                        className="stroke-green-700 hover:stroke-white h-8 w-8"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </a>
+
                   <button
                     type="button"
                     className="hover:bg-green-800 hover:rounded-lg p-1 text-white hover:text-white"

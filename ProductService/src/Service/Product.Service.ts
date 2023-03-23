@@ -15,11 +15,17 @@ export default class ProductService {
     async removeProduct() {
 
     }
-    async updateProduct() {
+    async updateProduct(productId: string, product: Product): Promise<Product | string> {
+        let data = await productModel.findOneAndUpdate({ _id: productId, sellerId: product.sellerId }, product, { new: true });
+        if (data) {
+            return data;
+        } else {
+            return "Could not update the data"
+        }
 
     }
     async saveProduct(product: Product): Promise<Product | string> {
-        let data = await productModel.findOne({ productName: product.productName });
+        let data = await productModel.findOne({ sellerId: product.sellerId, productName: product.productName });
         if (data) return "Product Name already exist";
         else {
             return productModel.create(product);

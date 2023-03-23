@@ -22,9 +22,9 @@ router.get("/products", secureAPI(), async (req: Request, res: Response) => {
 router.post("/products", secureAPI(), roleCheck(["seller"]), async (req: Request, res: Response) => {
     let { decoded } = res.locals;
     let sellerId = decoded.userData.uid;
-    let { productName, productDescription, availability, unitPrice, total } = req.body;
+    let { productName, productDescription, productHighlights, specification, size, availability, unitPrice, total } = req.body;
     let product = new ProductController();
-    let data = await product.createProduct(sellerId, productName, productDescription, availability, unitPrice, total);
+    let data = await product.createProduct(sellerId, productName, productDescription, productHighlights, specification, size, availability, unitPrice, total);
     res.json(data);
 })
 //this should create order with payment==false

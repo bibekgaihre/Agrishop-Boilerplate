@@ -36,6 +36,14 @@ class ProductController {
             console.log(error);
         }
     }
+    public updateProduct = async (req: Request, res: Response) => {
+        try {
+            let data = await this.productService.updateProduct(req.params.productId, req.body);
+            res.json(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 
