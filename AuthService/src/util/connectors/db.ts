@@ -1,6 +1,6 @@
 import mongoose, { ConnectOptions } from "mongoose";
 
-interface DBConnection {
+export interface DBConnection {
     connectMongoDB(): Promise<typeof mongoose | void>,
     connectMySQL(): void
 }

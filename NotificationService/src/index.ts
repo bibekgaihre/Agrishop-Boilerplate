@@ -1,11 +1,11 @@
 import amqplib from "amqplib/callback_api";
 import express, { Application } from "express";
 import http from "http";
-import dotenv from "dotenv";
+import { config } from "dotenv";
 
 import { Server } from "socket.io";
 const app: Application = express();
-dotenv.config();
+config();
 declare var process: {
     env: {
         PORT: number
